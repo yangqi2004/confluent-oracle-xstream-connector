@@ -1,9 +1,17 @@
 
 # How to test Oracle XStream CDC Connector 
 1. Kafka Connect Node Prep
-- install Confluent Platform 
+- install Confluent Platform and Java 17 if not already
+```
+curl -O https://packages.confluent.io/archive/7.6/confluent-7.6.6.zip
+sudo apt install openjdk-17-jre-headless
+
+```  
 - install Oracle XStream CDC Connector
-- install Oracle Instant Client
+```
+$CONFLUENT_HOME/bin/onfluent-hub confluentinc/kafka-connect-oracle-xstream-cdc-source:1.0.0
+```
+- install Oracle Instant Client, download it from Oracle and unzip it
 - install libaio1.so
 ```
 # For Ubuntu
