@@ -24,6 +24,26 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/libaio.so.1
 export LD_LIBRARY_PATH=/my/oracle/instantclient
 ```
 or edit systememd service file, add "Enironment=LD_LIBRARY_PATH=/my/oracle/instantclient" into the service script under service section
+```
+cat /etc/systemd/system/confluent-kafka-connect.service
+[Unit]
+Description=Apache Kafka Connect - distributed
+Documentation=http://docs.confluent.io/
+After=network.target confluent-server.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+#ExecStart=/home/ubuntu/confluent-7.6.6/bin/connect-distributed /home/ubuntu/confluent-7.6.6/etc/kafka/connect-distributed.properties
+ExecStart=/home/ubuntu/confluent-7.6.0/bin/connect-distributed /home/ubuntu/confluent-7.6.0/etc/kafka/connect-distributed.properties
+TimeoutStopSec=180
+Restart=no
+Environment=LD_LIBRARY_PATH=/home/ubuntu/instantclient_19_27
+
+[Install]
+WantedBy=multi-user.target
+```
 
 - Add ojdbc8.jar and xstreams.jar to XStream Connector lib
 ```
