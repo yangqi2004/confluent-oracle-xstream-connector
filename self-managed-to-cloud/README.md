@@ -50,7 +50,11 @@ WantedBy=multi-user.target
 cd cd instantclient_19_27/
 cp ojdbc8.jar xstreams.jar $CONFLUENT_HOME/share/confluent-hub-components/confluentinc-kafka-connect-oracle-xstream-cdc-source/lib
 ```
-
+## Confluent Cloud Prep
+- Create Kafka Cluster
+- Create API key/secret for the cluster, the service account/user should have ClusterAdmin role for the testing purpose
+- Create API key/secret for Schema Register
+  
 ## Oracle Datbase Prep
 
 - enable GG replication
