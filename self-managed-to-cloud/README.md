@@ -1,6 +1,7 @@
 
 # How to test Oracle XStream CDC Connector 
-1. Kafka Connect Node Prep
+## Kafka Connect Node Prep
+
 - install Confluent Platform and Java 17 if not already
 ```
 curl -O https://packages.confluent.io/archive/7.6/confluent-7.6.6.zip
@@ -22,14 +23,15 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/libaio.so.1
 ```
 export LD_LIBRARY_PATH=/my/oracle/instantclient
 ```
-or edit systememd service file, add 
-```
-Enironment=LD_LIBRARY_PATH=/my/oracle/instantclient
-```
-into the service script under service section
+or edit systememd service file, add "Enironment=LD_LIBRARY_PATH=/my/oracle/instantclient" into the service script under service section
 
+- Add ojdbc8.jar and xstreams.jar to XStream Connector lib
+```
+cd cd instantclient_19_27/
+cp ojdbc8.jar xstreams.jar $CONFLUENT_HOME/share/confluent-hub-components/confluentinc-kafka-connect-oracle-xstream-cdc-source/lib
+```
 
-2. Oracle Datbase Prep
+## Oracle Datbase Prep
 
 - enable GG replication
 ```
