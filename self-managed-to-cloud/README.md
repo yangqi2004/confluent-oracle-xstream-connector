@@ -6,10 +6,20 @@
 - install Oracle Instant Client
 - install libaio1.so
 ```
-download instantclient
+# For Ubuntu
+sudo apt install libaio1t64
 sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/libaio.so.1
 ```
 - Configure LD_LIBRARY_PATH to run Connect JVM
+```
+export LD_LIBRARY_PATH=/my/oracle/instantclient
+```
+or edit systememd service file, add 
+```
+Enironment=LD_LIBRARY_PATH=/my/oracle/instantclient
+```
+into the service script under service section
+
 
 2. Oracle Datbase Prep
 
