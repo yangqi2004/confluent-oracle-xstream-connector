@@ -1,0 +1,42 @@
+{
+    "name": "oracle-xstream-cc",
+    "connector.class": "io.confluent.connect.oracle.xstream.cdc.OracleXStreamSourceConnector",
+    "tasks.max": "1",
+    "database.hostname": "db-host",
+    "database.port": "1521",
+    "database.tls.mode": "disable",
+    "database.user": "C##CFLTUSER",
+    "database.password": "password",
+    "database.dbname": "ORCL",
+    "database.service.name": "ORCL",
+    "database.pdb.name": "ORCLPDB1",
+    "database.out.server.name": "XOUT",
+    "topic.prefix": "ORCL",
+    "table.include.list": "HR.EMPLOYEES",
+    
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url" : "https://psrc-8qvw0.us-east-1.aws.confluent.cloud",
+    "key.converter.schema.registry.basic.auth.credentials.source": "USER_INFO",
+    "key.converter.schema.registry.basic.auth.user.info" : "sr-key:sr-secret",
+    
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url" : "https://psrc-8qvw0.us-east-1.aws.confluent.cloud",
+    "value.converter.schema.registry.basic.auth.credentials.source": "USER_INFO",
+    "value.converter.schema.registry.basic.auth.user.info" : "sr-key:sr-secret",
+    
+    "schema.history.internal.kafka.topic": "__orcl-schema-changes.cflt",
+    "schema.history.internal.kafka.bootstrap.servers" : "pkc-n00kk.us-east-1.aws.confluent.cloud:9092",
+    "schema.history.internal.producer.sasl.jaas.config" : "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"kafka-key\" password=\"kafka-secret\";",
+    "schema.history.internal.producer.sasl.mechanism" : "PLAIN",
+    "schema.history.internal.producer.security.protocol" : "SASL_SSL",
+    "schema.history.internal.consumer.sasl.jaas.config" : "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"kafka-key\" password=\"kafka-secret\";",
+    "schema.history.internal.consumer.sasl.mechanism" : "PLAIN",
+    "schema.history.internal.consumer.security.protocol" : "SASL_SSL",
+    
+    "schema.history.internal.skip.unparseable.ddl": "false",
+    "schema.history.internal.store.only.captured.tables.ddl": "false",
+    "topic.creation.default.partitions"        : 4,
+    "topic.creation.default.replication.factor": 3,
+    "snapshot.max.threads" : 4 
+
+}
