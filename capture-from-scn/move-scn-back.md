@@ -1,4 +1,4 @@
-To move SCN back to recover DML changes you will need to follow this steps
+##To move SCN back to recover DML changes you will need to follow this steps
 
 * Stop connector
 ```
@@ -30,6 +30,7 @@ BEGIN
     start_scn    => 58857034);
 END;
 /
+```
 
 
 * start the outbound

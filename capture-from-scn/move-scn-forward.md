@@ -1,26 +1,9 @@
 To move SCN forward to skip some DML changes you will need to follow this steps
 
 * Stop connector
-* Change Connector offset
 ```
 curl localhost:8083/connectors/rac-xstream-A1104/offsets
 curl -X PUT localhost:8083/connectors/rac-xstream-A1104/stop
-curl -X PATCH -H "Content-Type: application/json" localhost:8083/connectors/rac-xstream-A1104/offsets -d \
- '{
-   "offsets": [
-     {
-       "partition": {
-         "server": "A1104"
-       },
-       "offset": {
-         "scn": "58857034",
-         "snapshot": "INITIAL",
-         "snapshot_completed": true
-       }
-     }
-   ]
- }'
-
 ```
 
 * Stop outbound by force
@@ -46,6 +29,7 @@ BEGIN
     start_scn    => 58857034);
 END;
 /
+```
 
 
 * start the outbound
@@ -61,8 +45,24 @@ select * from DBA_XSTREAM_OUTBOUND o, dba_capture c
 where o.capture_name = c.capture_name;
 ```
 
-* start the connector
+* change the offset and start the connector
 ```
+curl -X PATCH -H "Content-Type: application/json" localhost:8083/connectors/rac-xstream-A1104/offsets -d \
+ '{
+   "offsets": [
+     {
+       "partition": {
+         "server": "A1104"
+       },
+       "offset": {
+         "scn": "58857034",
+         "snapshot": "INITIAL",
+         "snapshot_completed": true
+       }
+     }
+   ]
+ }'
+
 curl -X POST localhost:8083/connectors/rac-xstream-A1104/restart?includeTasks=true
 curl -X PUT localhost:8083/connectors/rac-xstream-A1104/resume
 ```
