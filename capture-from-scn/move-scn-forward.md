@@ -1,4 +1,4 @@
-To move SCN forward to skip some DML changes you will need to follow this steps
+## To move SCN forward to skip some DML changes you will need to follow this steps
 
 * Stop connector
 ```
