@@ -1,4 +1,4 @@
-##To move SCN back to recover DML changes you will need to follow this steps
+## To move SCN back to recover DML changes you will need to follow this steps
 
 * Stop connector
 ```
