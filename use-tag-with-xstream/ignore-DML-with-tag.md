@@ -45,7 +45,8 @@ END;
 SELECT * FROM DBA_XSTREAM_RULES;
 
 ```
-- Once the xstream is setup, the sql client run this to generate transaction with tag and the transaction will be ignored and not captured by the xstream process.
+## Test
+Once the xstream is setup, the sql client run this to generate transaction with tag and the transaction will be ignored and not captured by the xstream process.
 
 The Oracle Database User need to be granted EXECTURE_CATALOG_ROLE in order to set tag. ( grant EXECTURE_CATALOG_ROLE to hr)
 
@@ -54,11 +55,22 @@ SQL> EXEC DBMS_STREAMS_ADM.SET_TAG(tag => HEXTORAW('17'));
 
 PL/SQL procedure successfully completed.
 
+-- this DML will NOT be captured
 SQL> update hr.employees set phone_number = '000-111-1207';
 
 107 rows updated.
 
 SQL> commit;
+
+-- this will clear the tag, and all the following transactions will be captured
+SQL> EXEC DBMS_STREAMS_ADM.SET_TAG();
+
+-- this DML will be captured 
+SQL> update hr.employees set phone_number = '000-111-1208';
+
+107 rows updated.
+SQL> commit;
+
 
 ```
 
