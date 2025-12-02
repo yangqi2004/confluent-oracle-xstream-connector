@@ -1,6 +1,6 @@
-## Use TAG to ignore the DML changes 
+# Use TAG to ignore the DML changes 
 
-- setup XStream to ignore any DML LCR with tag
+## setup XStream to ignore any DML LCR with tag
 - create xstream  
 ```
 DECLARE
@@ -64,6 +64,7 @@ SQL> commit;
 
 -- this will clear the tag, and all the following transactions will be captured
 SQL> EXEC DBMS_STREAMS_ADM.SET_TAG();
+PL/SQL procedure successfully completed.
 
 -- this DML will be captured 
 SQL> update hr.employees set phone_number = '000-111-1208';
