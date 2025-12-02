@@ -26,7 +26,7 @@ BEGIN
 END;
 /
 ```
-- add rules to capture changes in schema and only DML with out tag
+- add rules to capture changes in schema and DML/DDL without tag
 ```
 select * from dba_capture;
 
@@ -74,6 +74,49 @@ SQL> commit;
 
 
 ```
+The DDL with tags will be ignored as well. so if you need to capture DDL, make sure to clear tag before you run the DDL. 
+
+```
+SQL> EXEC DBMS_STREAMS_ADM.SET_TAG(tag => HEXTORAW('17'));
+
+PL/SQL procedure successfully completed.
+
+SQL> desc emp
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID					    NUMBER(6)
+ FIRST_NAME					    VARCHAR2(20)
+ LAST_NAME				   NOT NULL VARCHAR2(25)
+ EMAIL					   NOT NULL VARCHAR2(25)
+ PHONE_NUMBER				   NOT NULL VARCHAR2(20)
+ HIRE_DATE				   NOT NULL DATE
+ JOB_ID 				   NOT NULL VARCHAR2(10)
+ SALARY 					    NUMBER(8,2)
+ COMMISSION_PCT 				    NUMBER(2,2)
+ MANAGER_ID					    NUMBER(6)
+ DEPARTMENT_ID					    NUMBER(4)
+ ADDRESS					    VARCHAR2(300)
+ ADDRESS_NEW					    VARCHAR2(300)
+ ADDRESS_ND					    VARCHAR2(300)
+ NOTES						    VARCHAR2(100)
+ NOTES_NEW					    VARCHAR2(300)
+ SSN					   NOT NULL VARCHAR2(15)
+ LAST_UPDATE					    DATE
+ LAST_UPDATE_NEW				    DATE
+
+SQL> alter table emp add ai_notes varchar2(100);
+
+Table altered.
+
+SQL> EXEC DBMS_STREAMS_ADM.SET_TAG()
+
+PL/SQL procedure successfully completed.
+
+SQL> alter table emp add ai_notes_new varchar2(100);
+
+Table altered.
+```
+In this sample, the xstream process will only capture the second DDL.
 
 
 You can use this to remove the rule, after the testing
