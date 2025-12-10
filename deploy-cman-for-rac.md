@@ -1,5 +1,5 @@
 # How to Setup Oracle Connection Manager as Proxy to Oracle RAC behind the Firewall for Confluent XStream CDC Connector
-!(/image/cc-cman-rac.png?raw=true "Diagram")
+![image](/image/cc-cman-rac.png?raw=true "Diagram")
 
 ## Install Oracle Connection Manager
 Follow this [https://www.ateam-oracle.com/post/deploying-connection-manager-as-a-proxy-for-oracle-services] to install the Oracle Connection Manager. You will need to download
