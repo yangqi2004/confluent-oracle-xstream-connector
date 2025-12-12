@@ -2,27 +2,8 @@
 # How to test Oracle XStream CDC Connector 
 ## Kafka Connect Node Prep
 
-- install Confluent Platform if not already following this steps[cp install](https://docs.confluent.io/platform/current/installation/installing_cp/rhel-centos.html#systemd-rhel-centos-install)
+- install Confluent Platform if not already following this steps: Link - [cp install on RedHat](https://docs.confluent.io/platform/current/installation/installing_cp/rhel-centos.html#systemd-rhel-centos-install)
 
-```
-[ec2-user@ip-10-0-1-40 ~]$ sudo vi /etc/yum.repos.d/confluent.repo
-[Confluent]
-name=Confluent repository
-baseurl=https://packages.confluent.io/rpm/8.1
-gpgcheck=1
-gpgkey=https://packages.confluent.io/rpm/8.1/archive.key
-enabled=1
-
-[Confluent-Clients]
-name=Confluent Clients repository
-baseurl=https://packages.confluent.io/clients/rpm/centos/$releasever/$basearch
-gpgcheck=1
-gpgkey=https://packages.confluent.io/clients/rpm/archive.key
-enabled=1
-
-[ec2-user@ip-10-0-1-40 ~]$ sudo yum clean all && sudo yum install confluent-platform
-sudo dnf install java-17-openjdk.x86_64
-```  
 
 - install Oracle XStream CDC Connector
 ```
