@@ -10,9 +10,9 @@ plugin.path = /usr/share/java, /home/qyang/confluent-7.9.0/share/confluent-hub-c
 ## Configure Connector SMT
 - Replace "." with "-"
 ```
-     "transforms": "change",
-     "transforms.change.type": "io.confluent.qyang.connect.smt.RegexRouter",
-     "transforms.change.regex": "\\.",
-     "transforms.change.replacement": "-",
+     "transforms": "replaceIt",
+     "transforms.replaceIt.type": "io.confluent.qyang.connect.smt.RegexRouter",
+     "transforms.replaceIt.regex": "_",
+     "transforms.replaceIt.replacement": "-",
 ```
 
